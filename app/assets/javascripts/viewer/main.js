@@ -13,18 +13,51 @@ function clearSelection() {
 
 
 $(document).ready(function() {
-  $('#add_mark').click(function() {
+
+  $('#addCommentContainer').hide();
+
+  $('#showAddCommentContainer').click(function() {
   	var selection = window.getSelection();
   	if (selection.type == "Range") {
-  		console.log(selection.baseNode);
-  		console.log(selection.baseOffset);
-  		console.log(selection.extentNode);
-  		console.log(selection.extentOffset);
+      $('#addCommentContainer').show();
   		var start = $(selection.baseNode.parentElement);
   		var end = $(selection.extentNode.parentElement);
-  		addMark(start, selection.baseOffset, end, selection.extentOffset, true);
+      var startOffset = selection.baseOffset;
+      var endOffset = selection.extentOffset;
+  		addMark(start, selection.baseOffset, end, selection.extentOffset, false);
   		clearSelection();
   	}
+    $('#submitComment').click(function(e) {
+        e.preventDefault();
+        $.ajax({
+          url: "/marks",
+          data: {mark: {article_id:ARTICLE_ID, comment:$('textarea').val(), highlight_start_line:start.text(), highlight_start_offset:startOffset, highlight_end_line:end.text(), highlight_end_offset:endOffset}},
+          type: "POST",
+          dataType: "JSON"
+        }).success(function(data){
+          $('textarea').val("");
+          $('#addCommentContainer').hide();
+          console.log(data);
+        }).error(function(error) {
+          console.log(error);
+        });
+
+      
+    });
+
+    $(document).click(function (e) {
+      if($("#addCommentContainer").is(":visible") && !$("#addCommentContainer").is(e.target) && !$(e.target).parents("#addCommentContainer").size()) {
+          $("#addCommentContainer").fadeOut("fast");
+          var iter = start;
+          while (iter.text() != end.text()) {
+            iter.html(iter.text());
+            iter = iter.next();
+          }
+          end.html(end.text());
+          $('textarea').val("");
+      }
+    });
+    return false;
   });
 
 });

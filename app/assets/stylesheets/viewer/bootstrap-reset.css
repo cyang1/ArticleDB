@@ -8,8 +8,38 @@
 	margin-top:100px;
 }
 
+#showAddCommentContainer {
+float: right;
+position: fixed;
+right:0;
+margin-top: 35px;
+width: 250px;
+margin-right: 15px;
+}
+
+#addCommentContainer {
+float: right;
+position: fixed;
+right:0;
+background: white;
+margin-top: 35px;
+width: 250px;
+margin-right: 15px;
+display:none;
+}
+
 #commentsContainer {
-	float:right;
-	position:relative;
-	background:white;
+float: right;
+position: fixed;
+right:0;
+background: white;
+margin-top: 85px;
+width: 250px;
+margin-right: 15px;
+display:none;
+}
+
+
+.spacing {
+	margin-bottom:10px !important;
 }
