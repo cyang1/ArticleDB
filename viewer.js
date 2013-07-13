@@ -4024,11 +4024,11 @@ window.addEventListener('keydown', function keydown(evt) {
           break;
         }
         /* falls through */
-      case 74: // 'j'
-      case 78: // 'n'
-        PDFView.page++;
-        handled = true;
-        break;
+      // case 74: // 'j'
+      // case 78: // 'n'
+      //   PDFView.page++;
+      //   handled = true;
+      //   break;
 
       case 36: // home
         if (PDFView.isPresentationMode) {
@@ -4043,9 +4043,9 @@ window.addEventListener('keydown', function keydown(evt) {
         }
         break;
 
-      case 82: // 'r'
-        PDFView.rotatePages(90);
-        break;
+      // case 82: // 'r'
+      //   PDFView.rotatePages(90);
+      //   break;
     }
   }
 
