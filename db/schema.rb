@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20130713094124) do
 
   create_table "articles", :force => true do |t|
     t.text     "summary"
+    t.string   "name"
     t.integer  "collaboration_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

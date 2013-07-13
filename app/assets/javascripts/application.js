@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require mention
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
 //= require_tree .
