@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	  <title>ArticleDB</title>
+  	<%= yield :head %>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+
+  	<%= csrf_meta_tags %>
+	  </head>
+
+<body tabindex="1">
+
+<div class="navbar">
+	<div class="navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01">
+	      </button>
+	      <a href="#fakelink" class="brand fui-flat"></a>
+	      <div class="nav-collapse collapse" id="nav-collapse-01">
+
+
+	        <form class="navbar-search form-search pull-right" action="">
+	          <div class="input-append">
+	            <input type="text" class="search-query span2" placeholder="Search">
+	            <button type="submit" class="btn btn-large">
+	              <i class="fui-search"></i>
+	            </button>
+	          </div>
+	        </form>
+	       	<ul class="nav pull-right">
+	          <li class="active"><a href="#fakelink">Collaborations</a></li>
+	          <li><a href="#fakelink">+Yihuan</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+</div>          
+
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<base target="_blank">
+<title>getUserMedia</title>
+<link rel="stylesheet" href="css/main.css" />
+<style>
+@media screen and (min-width: 1000px) {
+  video {
+    height: 540px;
+  }
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+  <video autoplay></video>
+  <script src="js/singleVideo.js"></script>
+
+
+
+<!--
+  <p>For more information, see <a href="http://www.html5rocks.com/en/tutorials/getusermedia/intro/" title="Media capture article by Eric Bidelman on HTML5 Rocks">Capturing Audio &amp; Video in HTML5</a> on HTML5 Rocks.</p>
+
+<a href="https://github.com/samdutton/simpl/blob/master/getusermedia/index.html" title="View source for this page on github" id="viewSource">View source on github</a>
+-->
+
+<!--
+<h2>
+Video Recording
+</h2>
+
+<button id="record-video"> 
+	Record Video 
+</button>
+<button id="stop-recording-video" disabled> 
+	Stop Recording Video
+</button>
+
+<br><br>
+
+<button id="record-audio"> 
+	Record Audio 
+</button>
+<button id="stop-recording-audio" disabled> 
+	Stop Recording Audio
+</button>
+
+<script src="https://webrtc-experiment.appspot.com/RecordRTC.js"></script>
+
+<script>
+
+	var recorder = RecordRTC({
+	   video: HTMLVideoElement
+	});
+
+	var recordAudio = document.getElementById('record-audio'),
+    recordVideo = document.getElementById('record-video'),
+    stopRecordingAudio = document.getElementById('stop-recording-audio'),
+    stopRecordingVideo = document.getElementById('stop-recording-video');
+
+	recordAudio.onclick = function() {
+        if (!audioStream)
+            navigator.webkitGetUserMedia(audioConstraints, function(stream) {
+                stream = new webkitMediaStream(stream.getAudioTracks());
+                audioStream = stream;
+                recorder = RecordRTC({
+                    stream: stream
+                });
+                recorder.recordAudio();
+            });
+        else recorder.recordAudio();
+
+        window.isAudio = true;
+
+        this.disabled = true;
+        stopRecordingAudio.disabled = false;
+    };
+
+    stopRecordingAudio.onclick = function() {
+        this.disabled = true;
+        recordAudio.disabled = false;
+
+        recorder.stopAudio(function(url) {
+            document.getElementById('audio-url-preview').innerHTML = '<a href="' + url + '" target="_blank">open audio.wav</a>';
+        });
+    };
+
+    recordVideo.onclick = function() {
+    	this.disabled = true;
+        stopRecordingVideo.disabled = false;
+
+        recorder.recordVideo();
+    };
+
+    stopRecordingVideo.onclick = function() {
+        this.disabled = true;
+        recordVideo.disabled = false;
+
+		//recorder.stopVideo(function(videoURL) {
+		//   window.open(videoURL);
+
+        recorder.stopVideo(function(url) {
+            document.getElementById('video-url-preview').innerHTML = '<a href="' + url + '" target="_blank">open video.webm</a>';
+        });
+    };
+
+
+	
+	
+
+
+//var video = document.querySelector('video');
+//var canvas = document.querySelector('canvas');
+//var ctx = canvas.getContext('2d');
+//var localMediaStream = stream;
+
+//function snapshot() {
+//  if (localMediaStream) {
+//    ctx.drawImage(video, 0, 0);
+//    // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
+//    document.querySelector('img').src = canvas.toDataURL('image/webp');
+//  }
+//}
+
+//video.addEventListener('click', snapshot, false);
+
+
+//var recorder = RecordRTC({
+//    video: HTMLVideoElement
+//});
+
+/* start recording video */
+//recorder.recordVideo();
+
+/* stop recording video and save recorded file to disk */
+//recorder.stopVideo(function(videoURL) {
+//   window.open(videoURL);
+//});
+</script>
+
+-->
+
+
+</div>
+</body>
+</html>
