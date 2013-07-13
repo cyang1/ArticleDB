@@ -25,4 +25,6 @@
 //= require flat-ui/jquery.placeholder
 //= require flat-ui/jquery.stacktable
 //= require flat-ui/application
+//= require bootstrap.file-input
+//= require articles
 // require_tree .

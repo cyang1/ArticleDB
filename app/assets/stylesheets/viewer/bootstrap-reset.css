@@ -8,6 +8,19 @@
 	margin-top:100px;
 }
 
+a:visited {
+	color:white !important;
+}
+
+#infoContainer {
+float: left;
+position: fixed;
+margin-top: 35px;
+width: 250px;
+margin-left: 15px;
+}
+
+
 #showAddCommentContainer {
 float: right;
 position: fixed;

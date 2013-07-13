@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   def create
   	@article = Article.new(params[:article])
   	if @article.save!
-  		redirect_to new_article_path
+  		redirect_to articles_path(@article)
   	else
   		logger.info("FAILED VALIDATION")
   		logger.info(@articles.errors)
@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
 
   def update
 	  @article = Article.find(params[:id])
-
 	  respond_to do |format|
 	    if @article.update_attributes(params[:article])
 	      format.html { redirect_to @article, notice: 'Article was successfully updated.' }
