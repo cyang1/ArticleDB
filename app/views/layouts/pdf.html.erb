@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head <%= yield :html %>>
-  <title>ArticleDB</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= yield :head %>
-  <%= csrf_meta_tags %>
-</head>
-<body <%= yield :body %>>
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	  <title>ArticleDB</title>
+  	<%= yield :head %>
+  	<%= csrf_meta_tags %>
+	  </head>
 
-<div class="navbar">
+  <body tabindex="1">
+
+<!-- <div class="navbar">
 	<div class="navbar-fixed-top">
 	  <div class="navbar-inner">
 	    <div class="container">
@@ -35,9 +35,9 @@
 	    </div>
 	  </div>
   </div>
-</div>          
+</div>           -->
 
-<div class="dialog" id="login">
+<!-- <div class="dialog" id="login">
 	<form class="control-group">
     <input type="text" placeholder="E-mail" class="flat">
     <input type="password" placeholder="Password" class="flat">
@@ -45,7 +45,7 @@
   </form>
 </div>
 
-<!--<div class="dialog" id="login">
+<div class="dialog" id="login">
 	<form class="control-group">
     <input type="text" placeholder="First Name" class="flat">
     <input type="text" placeholder="Last Name" class="flat">
@@ -53,7 +53,7 @@
     <input type="password" placeholder="Password" class="flat">
     <button class="btn btn-danger btn-wide">Register</button>
   </form>
-</div>
+</div> -->
 
 <%= yield %>
 
