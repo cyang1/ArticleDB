@@ -6,6 +6,11 @@ ArticleDB::Application.routes.draw do
   resources :articles
   root :to => 'home#index'
 
+  scope '/collab' do
+    get 'index' => 'collaborations#index'
+    root :to => 'collaborations#index'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
