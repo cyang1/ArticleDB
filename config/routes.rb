@@ -6,6 +6,7 @@ ArticleDB::Application.routes.draw do
   post '/users/create'
   get '/users/typeahead' => 'user#typeahead'
 
+  resources :users
   resources :sessions  
   resources :articles
   resources :marks
