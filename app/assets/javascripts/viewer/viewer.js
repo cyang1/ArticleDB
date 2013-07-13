@@ -79,7 +79,6 @@ function addMarks() {
     mouseenter: function(){
       $('#commentsContainer').show();
       $('.comment').html($(this).data("comment"));
-      console.log($(this));
     },
     mouseleave: function(){
       $('.comment').html("");

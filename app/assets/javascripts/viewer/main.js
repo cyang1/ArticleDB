@@ -18,13 +18,18 @@ $(document).ready(function() {
 
   $('#showAddCommentContainer').click(function() {
   	var selection = window.getSelection();
-  	if (selection.type == "Range") {
+  	var start;
+    var end;
+    var startOffset;
+    var endOffset;
+
+    if (selection.type == "Range") {
       $('#addCommentContainer').show();
-  		var start = $(selection.baseNode.parentElement);
-  		var end = $(selection.extentNode.parentElement);
-      var startOffset = selection.baseOffset;
-      var endOffset = selection.extentOffset;
-  		addMark(start, selection.baseOffset, end, selection.extentOffset, false);
+  		start = $(selection.baseNode.parentElement);
+  		end = $(selection.extentNode.parentElement);
+      startOffset = selection.baseOffset;
+      endOffset = selection.extentOffset;
+  		addMark(start, selection.baseOffset, end, selection.extentOffset, "");
   		clearSelection();
   	}
     $('#submitComment').click(function(e) {
@@ -35,9 +40,9 @@ $(document).ready(function() {
           type: "POST",
           dataType: "JSON"
         }).success(function(data){
+          addMark(start, startOffset, end, endOffset, "", $('textarea').val());
           $('textarea').val("");
           $('#addCommentContainer').hide();
-          console.log(data);
         }).error(function(error) {
           console.log(error);
         });
