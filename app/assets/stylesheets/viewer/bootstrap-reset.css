@@ -3,6 +3,9 @@
 	padding-right: 0px !important;
 }
 
+.navbar {
+	margin-bottom:-2px !important;
+}
 
 .info {
 	margin-top:100px;
