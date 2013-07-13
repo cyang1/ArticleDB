@@ -3,6 +3,7 @@ ArticleDB::Application.routes.draw do
   match 'login' => 'sessions#new', :as => :login
 
   resources :sessions  
+  resources :articles
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
