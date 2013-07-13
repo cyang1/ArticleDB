@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :summary, :collaboration_id, :pdf
+  attr_accessible :name, :summary, :collaboration_id, :pdf
   
   
   has_many :marks

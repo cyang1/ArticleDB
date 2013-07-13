@@ -29,6 +29,8 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    bootstrap-editable-rails (0.0.5)
+      railties (>= 3.1)
     bootstrap-sass (2.3.1.3)
       sass (~> 3.2)
     builder (3.0.4)
@@ -124,6 +126,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-editable-rails
   bootstrap-sass (~> 2.3.1.3)
   coffee-rails (~> 3.2.1)
   font-awesome-rails
