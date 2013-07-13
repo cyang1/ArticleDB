@@ -15,4 +15,14 @@
 //= require bootstrap
 //= require bootstrap-editable
 //= require bootstrap-editable-rails
-//= require_tree .
+//= require flat-ui/jquery-ui-1.10.3.custom.min
+//= require flat-ui/jquery.ui.touch-punch.min
+//= require flat-ui/bootstrap-select
+//= require flat-ui/bootstrap-switch
+//= require flat-ui/flatui-checkbox
+//= require flat-ui/flatui-radio
+//= require flat-ui/jquery.tagsinput
+//= require flat-ui/jquery.placeholder
+//= require flat-ui/jquery.stacktable
+//= require flat-ui/application
+// require_tree .

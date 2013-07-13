@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: "Flat-UI-Icons";
-  src: url(image_url("flat-ui/fonts/Flat-UI-Icons.eot"));
-  src: url(image_url("flat-ui/fonts/Flat-UI-Icons.eot?#iefix")) format("embedded-opentype"), url(image_url("flat-ui/fonts/Flat-UI-Icons.woff")) format("woff"), url(image_url("flat-ui/fonts/Flat-UI-Icons.ttf")) format("truetype"), url(image_url("flat-ui/fonts/Flat-UI-Icons.svg#Flat-UI-Icons")) format("svg");
+  src: url(image_path("flat-ui/fonts/Flat-UI-Icons.eot"));
+  src: url(image_path("flat-ui/fonts/Flat-UI-Icons.eot?#iefix")) format("embedded-opentype"), url(image_path("flat-ui/fonts/Flat-UI-Icons.woff")) format("woff"), url(image_path("flat-ui/fonts/Flat-UI-Icons.ttf")) format("truetype"), url(image_path("flat-ui/fonts/Flat-UI-Icons.svg#Flat-UI-Icons")) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -6069,8 +6069,8 @@ input.search-query {
   position: relative;
   text-align: left;
   width: 80px;
-  -webkit-mask: url(image_url("flat-ui/switch/mask.png")) 0 0 no-repeat;
-  mask: url(image_url("flat-ui/switch/mask.png")) 0 0 no-repeat;
+  -webkit-mask: url(image_path("flat-ui/switch/mask.png")) 0 0 no-repeat;
+  mask: url(image_path("flat-ui/switch/mask.png")) 0 0 no-repeat;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -6174,8 +6174,8 @@ input.search-query {
 }
 .switch-square {
   border-radius: 6px;
-  -webkit-mask: url(image_url("flat-ui/switch/mask.png")) 0 0 no-repeat;
-  mask: url(image_url("flat-ui/switch/mask.png")) 0 0 no-repeat;
+  -webkit-mask: url(image_path("flat-ui/switch/mask.png")) 0 0 no-repeat;
+  mask: url(image_path("flat-ui/switch/mask.png")) 0 0 no-repeat;
 }
 .switch-square > div.switch-off label {
   border-color: #7f8c9a;

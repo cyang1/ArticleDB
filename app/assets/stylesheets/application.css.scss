@@ -8,8 +8,6 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap-editable
-
  */
 
 // Define variables before bootstrap import
@@ -26,3 +24,11 @@
 
 // Whatever application styles you have go last
 @import "font-awesome";
+
+@import "bootstrap-editable";
+
+@import "flat-ui/flat-ui";
+
+body {
+	padding-top:60px;
+}
