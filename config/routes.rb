@@ -3,7 +3,7 @@ ArticleDB::Application.routes.draw do
   get "user/create"
 
   match 'login' => 'sessions#new', :as => :login
-  post '/users/create'
+  post '/users/create' => 'user#create'
   get '/users/typeahead' => 'user#typeahead'
 
   resources :sessions  
