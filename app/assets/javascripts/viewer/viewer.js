@@ -54,18 +54,42 @@ var mozL10n = document.mozL10n || document.webL10n;
 
 
 function addMarks() {
-  var marks = [["sons to other brands. Finally, regret is specifically related to", 22, "that led to an unfortunate outcome", 4]];
-  for (var i in marks) {
-    var mark = marks[i];
-    var start = $('*:contains("'+mark[0]+'")').last();
-    var end = $('*:contains("'+mark[2]+'")').last();
-    if (start.last().text() != "" && end.last().text() != "") {
-      addMark(start.last(), mark[1], end.last(), mark[3], false);
+  var marks;
+  $.ajax({
+    url: "/marks/"+ARTICLE_ID,
+    data: "",
+    type: "GET",
+    dataType: "JSON"
+  }).success(function(data){
+    marks=data
+    for (var i in marks) {
+      var mark = marks[i];
+      // console.log(mark);
+      var start = $('*:contains("'+mark.highlight_start_line+'")').last();
+      var end = $('*:contains("'+mark.highlight_end_line+'")').last();
+      if (start.last().text() != "" && end.last().text() != "") {
+        addMark(start.last(), mark.highlight_start_offset, end.last(), mark.highlight_end_offset, "", mark.comment);
+      }
     }
-  }
+  }).error(function(error) {
+    console.log(error);
+  });
+
+  $("body").on({
+    mouseenter: function(){
+      $('#commentsContainer').show();
+      $('.comment').html($(this).data("comment"));
+    },
+    mouseleave: function(){
+      $('.comment').html("");
+      $('#commentsContainer').hide();
+    }
+  }, ".highlight");  // descendant selector
+
+
 }
 
-function addMark(startDiv, startOffset, endDiv, endOffset, create) {
+function addMark(startDiv, startOffset, endDiv, endOffset, name, comment) {
   var iter = startDiv;
   var range = [];
   while (iter.text() != endDiv.text()) {
@@ -79,7 +103,7 @@ function addMark(startDiv, startOffset, endDiv, endOffset, create) {
     var firstUnhighlighted = text.substring(0, startOffset);
     var highlighted = text.substring(startOffset, endOffset);
     var lastUnhighlighted = text.substring(endOffset);
-    div.html(firstUnhighlighted+'<span class="highlight">'+highlighted+'</span>'+lastUnhighlighted);
+    div.html(firstUnhighlighted+'<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+lastUnhighlighted);
   } else { // multi line
     for (var i in range) {
       var div = range[i];
@@ -87,30 +111,17 @@ function addMark(startDiv, startOffset, endDiv, endOffset, create) {
         var text = div.text();
         var highlighted = text.substring(startOffset);
         var unhighlighted = text.substring(0, startOffset);
-        div.html(unhighlighted+'<span class="highlight">'+highlighted+'</span>');
+        div.html(unhighlighted+'<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>');
       } else if (div == endDiv) {
         var text = div.text();
         var highlighted = text.substring(0, endOffset);
         var unhighlighted = text.substring(endOffset);
-        div.html('<span class="highlight">'+highlighted+'</span>'+unhighlighted);
+        div.html('<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+unhighlighted);
       } else {
-        div.html('<span class="highlight">'+div.text()+'</span>');
+        div.html('<span data-name="" data-comment="'+comment+'" class="highlight">'+div.text()+'</span>');
       }
     }
   }
-
-  if (create) {
-    $.ajax({
-      url: "/marks",
-      data: {mark: {highlight_start_line:startDiv.text(), highlight_start_offset:startOffset, highlight_end_line:endDiv.text(), highlight_end_offset:endOffset}},
-      type: "POST",
-      dataType: "JSON"
-    }).success(function(data){
-      console.log(data);
-    }).error(function(error) {
-      console.log(error);
-    });
-  } 
 }
 
 
@@ -1445,7 +1456,6 @@ var PDFView = {
                                            this.pageViewScroll.down);
     if (pageView) {
       this.renderView(pageView, 'page');
-      
       addMarks();
       return;
     }
@@ -1806,7 +1816,7 @@ var PDFView = {
   },
 
   rotatePages: function pdfViewPageRotation(delta) {
-
+    return;
     this.pageRotation = (this.pageRotation + 360 + delta) % 360;
 
     for (var i = 0, l = this.pages.length; i < l; i++) {
@@ -1957,8 +1967,6 @@ var PageView = function pageView(container, id, scale,
       scale: this.scale,
       rotation: totalRotation
     });
-
-    console.log(this.viewport.width);
 
     div.style.width = Math.floor(this.viewport.width) + 'px';
     div.style.height = Math.floor(this.viewport.height) + 'px';
@@ -2722,15 +2730,15 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
   //     PDFView.switchSidebarView('outline');
   //   });
 
-  document.getElementById('previous').addEventListener('click',
-    function() {
-      PDFView.page--;
-    });
+  // document.getElementById('previous').addEventListener('click',
+  //   function() {
+  //     PDFView.page--;
+  //   });
 
-  document.getElementById('next').addEventListener('click',
-    function() {
-      PDFView.page++;
-    });
+  // document.getElementById('next').addEventListener('click',
+  //   function() {
+  //     PDFView.page++;
+  //   });
 
   document.getElementById('zoomIn').addEventListener('click',
     function() {
@@ -2792,15 +2800,6 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
       PDFView.page = PDFView.pdfDocument.numPages;
     });
 
-  document.getElementById('pageRotateCcw').addEventListener('click',
-    function() {
-      PDFView.rotatePages(-90);
-    });
-
-  document.getElementById('pageRotateCw').addEventListener('click',
-    function() {
-      PDFView.rotatePages(90);
-    });
 
 //#if (FIREFOX || MOZCENTRAL)
 //PDFView.setTitleUsingUrl(file);
@@ -3046,6 +3045,7 @@ window.addEventListener('click', function click(evt) {
 }, false);
 
 window.addEventListener('keydown', function keydown(evt) {
+  return;
   var handled = false;
   var cmd = (evt.ctrlKey ? 1 : 0) |
             (evt.altKey ? 2 : 0) |

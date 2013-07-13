@@ -53,7 +53,8 @@
   <%= javascript_include_tag "viewer/bidi"%>
   <script type="text/javascript">
   	PDFJS.workerSrc = "<%= asset_path("viewer/worker_loader") %>.js";
-  	DEFAULT_URL = "<%= @article.pdf.url %>"
+  	DEFAULT_URL = "<%= @article.pdf.url %>";
+    ARTICLE_ID = <%= @article.id %>;
   </script>
   <%= javascript_include_tag "viewer/ui_utils"%>
   <%= javascript_include_tag "viewer/text_layer_builder"%>
@@ -198,14 +199,46 @@
                 data-l10n-id="page_rotate_cw" ></menuitem>
     </menu>
 
-    <div id="commentsContainer">
-    	<div>
-    		Hi
-    	</div>
+    <a href="#" id="showAddCommentContainer" class="btn btn-mini btn-primary btn-block spacing">
+      Add Comment
+      <i class="fui-arrow-right pull-right"></i>
+    </a>
+
+    <div id="infoContainer">
+      <ul class="nav nav-list nav-list-vivid">
+            <li class="nav-header spacing"><%= @article.name %></li>
+            <li class="spacing">
+              <%= @article.summary %>
+            </li>
+        </ul>
     </div>
 
+    <div id="commentsContainer">
+    	<ul class="nav nav-list nav-list-vivid">
+            <li class="nav-header spacing">Yihuan</li>
+            <li class="comment spacing">
+            </li>
+        </ul>
+    </div>
 
-    <div id="viewerContainer" class="row-fluid">
+    <div id="addCommentContainer">
+      <ul class="nav nav-list nav-list-vivid">
+
+            <li class="nav-header spacing">Yihuan</li>
+            <!-- <li>
+              of scholarship. For more information about JSTOR, please contact support@jstor.org. .The University of Cof scholarship. For more information about JSTOR, please contact support@jstor.org. .The University of Cof scholarship. For more information about JSTOR, please contact support@jstor.org. .The University of Cof scholarship. For more information about JSTOR, please contact support@jstor.org. .The University of C
+            </li> -->
+            <li>
+              <textarea class="span12" rows="6" placeholder="Add comment..."></textarea>
+            </li>
+            <a href="#" id="submitComment" class="btn btn-mini btn-primary btn-block spacing">
+            Add Comment
+            <i class="fui-arrow-right pull-right"></i>
+          </a>
+        </ul>
+    </div>
+
+    <div id="viewerContainer">
       <div id="viewer" contextmenu="viewerContextMenu"></div>
     </div>
 
