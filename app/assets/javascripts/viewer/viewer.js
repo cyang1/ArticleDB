@@ -52,6 +52,55 @@ var FindStates = {
 
 var mozL10n = document.mozL10n || document.webL10n;
 
+
+function addMarks() {
+  var marks = [["sons to other brands. Finally, regret is specifically related to", 22, "that led to an unfortunate outcome", 4]];
+  for (var i in marks) {
+    var mark = marks[i];
+    var start = $('*:contains("'+mark[0]+'")').last();
+    var end = $('*:contains("'+mark[2]+'")').last();
+    if (start.last().text() != "" && end.last().text() != "") {
+      addMark(start.last(), mark[1], end.last(), mark[3], false);
+    }
+  }
+}
+
+function addMark(startDiv, startOffset, endDiv, endOffset, create) {
+  var iter = startDiv;
+  var range = [];
+  while (iter.text() != endDiv.text()) {
+    range.push(iter);
+    iter = iter.next();
+  }
+  range.push(endDiv);
+  if (range.length == 1) { // same line
+    var div = range[0];
+    var text = div.text();
+    var firstUnhighlighted = text.substring(0, startOffset);
+    var highlighted = text.substring(startOffset, endOffset);
+    var lastUnhighlighted = text.substring(endOffset);
+    div.html(firstUnhighlighted+'<span class="highlight">'+highlighted+'</span>'+lastUnhighlighted);
+  } else { // multi line
+    for (var i in range) {
+      var div = range[i];
+      if (div == startDiv) {
+        var text = div.text();
+        var highlighted = text.substring(startOffset);
+        var unhighlighted = text.substring(0, startOffset);
+        div.html(unhighlighted+'<span class="highlight">'+highlighted+'</span>');
+      } else if (div == endDiv) {
+        var text = div.text();
+        var highlighted = text.substring(0, endOffset);
+        var unhighlighted = text.substring(endOffset);
+        div.html('<span class="highlight">'+highlighted+'</span>'+unhighlighted);
+      } else {
+        div.html('<span class="highlight">'+div.text()+'</span>');
+      }
+    }
+  } 
+}
+
+
 //#include ui_utils.js
 
 function scrollIntoView(element, spot) {
@@ -1383,6 +1432,8 @@ var PDFView = {
                                            this.pageViewScroll.down);
     if (pageView) {
       this.renderView(pageView, 'page');
+      
+      addMarks();
       return;
     }
     // No pages needed rendering so check thumbnails.
@@ -1440,6 +1491,7 @@ var PDFView = {
   // on the views state. If the view is already rendered it will return false.
   renderView: function pdfViewRender(view, type) {
     var state = view.renderingState;
+    
     switch (state) {
       case RenderingStates.FINISHED:
         return false;
