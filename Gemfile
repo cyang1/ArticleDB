@@ -17,7 +17,7 @@ end
 gem "paperclip", "~> 3.0"
 
 gem 'bootstrap-editable-rails'
-
+gem 'bcrypt-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,6 +27,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.3'
   gem 'simple_form'
   gem 'font-awesome-rails'
+  gem "animate-rails"
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

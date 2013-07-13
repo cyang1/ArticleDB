@@ -32,8 +32,12 @@
 	          </div>
 	        </form>
 	       	<ul class="nav pull-right">
-	          <li class="active"><a href="#fakelink">Collaborations</a></li>
-	          <li><a href="#fakelink">+Yihuan</a></li>
+	          <li class="active"><a href="/collab">Collaborations</a></li>
+            <% if logged_in? %>
+            <li><a href="#fakelink">+<%= current_user.first_name %></a></li>
+            <% else %>
+            <li><a href="#login" id="login-link">Login</a></li>
+            <% end %>
 	        </ul>
 	      </div>
 	    </div>

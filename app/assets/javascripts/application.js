@@ -27,4 +27,6 @@
 //= require flat-ui/application
 //= require bootstrap.file-input
 //= require articles
-// require_tree .
+//= require mention
+//= require collaborations
+//= require sessions

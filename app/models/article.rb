@@ -1,7 +1,5 @@
 class Article < ActiveRecord::Base
   attr_accessible :name, :summary, :collaboration_id, :pdf
-  
-  
   has_many :marks
   belongs_to :collaboration
 	has_attached_file :pdf, :default_url => ":rails_root/public/missing.pdf",

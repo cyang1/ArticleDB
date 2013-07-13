@@ -1,10 +1,15 @@
 ArticleDB::Application.routes.draw do
   
+  get "user/create"
+
   match 'login' => 'sessions#new', :as => :login
+  post '/users/create'
+  get '/users/typeahead' => 'user#typeahead'
 
   resources :sessions  
   resources :articles
   resources :marks
+  resources :collaborations, :path => 'collab'
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
