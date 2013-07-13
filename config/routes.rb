@@ -4,6 +4,7 @@ ArticleDB::Application.routes.draw do
 
   resources :sessions  
   resources :articles
+  resources :marks
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

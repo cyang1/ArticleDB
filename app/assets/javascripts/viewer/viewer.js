@@ -97,6 +97,19 @@ function addMark(startDiv, startOffset, endDiv, endOffset, create) {
         div.html('<span class="highlight">'+div.text()+'</span>');
       }
     }
+  }
+
+  if (create) {
+    $.ajax({
+      url: "/marks",
+      data: {mark: {highlight_start_line:startDiv.text(), highlight_start_offset:startOffset, highlight_end_line:endDiv.text(), highlight_end_offset:endOffset}},
+      type: "POST",
+      dataType: "JSON"
+    }).success(function(data){
+      console.log(data);
+    }).error(function(error) {
+      console.log(error);
+    });
   } 
 }
 
@@ -1944,6 +1957,8 @@ var PageView = function pageView(container, id, scale,
       scale: this.scale,
       rotation: totalRotation
     });
+
+    console.log(this.viewport.width);
 
     div.style.width = Math.floor(this.viewport.width) + 'px';
     div.style.height = Math.floor(this.viewport.height) + 'px';
