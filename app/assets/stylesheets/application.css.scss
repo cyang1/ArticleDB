@@ -26,11 +26,16 @@
 @import "font-awesome";
 
 @import "bootstrap-editable";
-
 @import "flat-ui/flat-ui";
+@import "animate";
 
 body {
 	padding-top:60px;
+  background-color: #edeff1;
+}
+
+.help-link {
+  margin-top: 10px;
 }
 
 .mention_name{

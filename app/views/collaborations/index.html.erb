@@ -1,0 +1,16 @@
+<div class="container">
+  <table>
+    <thead>
+      <th>
+        <td>Name</td>
+      </th>
+    </thead>
+    <tbody>
+      <% @collabs.each do |c| %>
+      <tr>
+        <td><%= link_to c, c.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

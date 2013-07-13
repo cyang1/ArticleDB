@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require mention
 //= require bootstrap-editable
 //= require bootstrap-editable-rails
 //= require flat-ui/jquery-ui-1.10.3.custom.min
@@ -26,4 +25,7 @@
 //= require flat-ui/jquery.placeholder
 //= require flat-ui/jquery.stacktable
 //= require flat-ui/application
-// require_tree .
+//= require mention
+//= require articles
+//= require collaborations
+//= require sessions

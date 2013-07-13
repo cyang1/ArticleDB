@@ -1,0 +1,16 @@
+<div class="container">
+  <table>
+    <thead>
+      <th>
+        <td>Name</td>
+      </th>
+    </thead>
+    <tbody>
+      <% @articles.each do |a| %>
+      <tr>
+        <td><%= link_to a, a.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,27 @@
+<%= form_for @collab, :html => { :autocomplete => 'off' } do |f| %>
+  <% if @collab.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@collab.errors.count, "error") %> prohibited
+      this collaboration from being saved:</h2>
+    <ul>
+    <% @collab.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= f.text_field :name, :placeholder => 'Collaboration Name' %>
+  <div class="control-group form-inline">
+    <%= text_field_tag :users, nil, :placeholder => 'Add User', :id => 'user_typeahead', :'data-provide' => 'typeahead' %>
+    <button id="add_user_btn" class="btn">Add</button>
+  </div>
+  <ul id="users_list">
+    <% @collab.users.each do |u| %>
+    <li>
+      <span class="mention_name"><%= "#{u.first_name} #{u.last_name}" %></span>
+      <span class="mention_username"><%= u.email %></span>
+    </li>
+    <% end %>
+  </ul>
+  <%= f.submit nil, :class => 'btn' %>
+<% end %>
