@@ -1,16 +1,8 @@
 ArticleDB::Application.routes.draw do
-  get "sessions/new"
+  
+  match 'login' => 'sessions#new', :as => :login
 
-  get "sessions/create"
-
-  get "sessions/destroy"
-
-  get "session/new"
-
-  get "session/create"
-
-  get "session/destroy"
-
+  resources :sessions  
   get "/index" => 'home#index'
   root :to => 'home#index'
 
