@@ -1,16 +1,13 @@
 ArticleDB::Application.routes.draw do
   
   match 'login' => 'sessions#new', :as => :login
+  get '/user_typeahead' => 'user#typeahead'
 
   resources :sessions  
   resources :articles
   resources :marks
+  resources :collaborations, :path => 'collab'
   root :to => 'home#index'
-
-  scope '/collab' do
-    get 'index' => 'collaborations#index'
-    root :to => 'collaborations#index'
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
