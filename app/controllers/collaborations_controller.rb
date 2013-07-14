@@ -2,7 +2,7 @@ class CollaborationsController < ApplicationController
   before_filter :check_current_user
 
   def index
-    @collabs = current_user.collaborations.order(:id)
+    @collabs = current_user.collaborations
   end
 
   def new
@@ -10,10 +10,15 @@ class CollaborationsController < ApplicationController
   end
 
   def create
-    logger.info(params[:collab])
-    @collab = current_user.collaborations.build(params[:collab])
+    p params
+    @collab = Collaboration.new(params[:collaboration])
     if @collab.save
-      redirect_to collaborations_path
+      UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => current_user.id)
+      params[:users_list].each do |u|
+        user_id = User.find_by_email(u).id
+        UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => user_id)
+      end
+      render :text => collaboration_path(@collab)
     else
       logger.info("FAILED VALIDATION")
       logger.info(@articles.errors)

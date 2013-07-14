@@ -12,6 +12,15 @@ $(document).ready ->
         process(data.options)
   $('#add_user_btn').on 'click', (e) ->
     $('#users_list').append("<li>#{$('#user_typeahead').val()}</li>")
-    $('#users_list').append("<input id='users[]' name='users[]' type='hidden' value='#{$('#user_typeahead').val()}' />")
     e.preventDefault()
     return false;
+  $('#collaboration_form').on 'submit', (e) ->
+    serializedStr = ''
+    $('#users_list li').each (l) ->
+      serializedStr += encodeURIComponent("users_list[]") + "=" + encodeURIComponent($(this).text()) + "&"
+    serializedStr += $(this).serialize()
+    console.log(serializedStr)
+    $.post '/collab', serializedStr, (data) ->
+      window.location = data
+    e.preventDefault()
+    return false

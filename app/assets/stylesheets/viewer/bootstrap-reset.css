@@ -7,19 +7,26 @@
 	margin-bottom:-4px !important;
 }
 
+.quickfix {
+	margin-bottom:-4px !important;
+}
 .info {
 	margin-top:100px;
 }
 
+.active {
+	color:#1abc9c !important;
+}
 a:visited {
-	color:white !important;
+	color:white;
 }
 
 #infoContainer {
 float: left;
 position: fixed;
 margin-top: 35px;
-width: 250px;
+width: 100%;
+max-width:250px;
 margin-left: 15px;
 }
 
