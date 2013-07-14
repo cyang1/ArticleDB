@@ -1,4 +1,4 @@
-<%= form_for @collab, :html => { :autocomplete => 'off' } do |f| %>
+<%= form_for @collab, :html => { :autocomplete => 'off', :id => 'collaboration_form' } do |f| %>
   <% if @collab.errors.any? %>
   <div id="errorExplanation">
     <h2><%= pluralize(@collab.errors.count, "error") %> prohibited

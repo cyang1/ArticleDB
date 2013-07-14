@@ -10,9 +10,14 @@ class CollaborationsController < ApplicationController
   end
 
   def create
+    p params
     @collab = current_user.collaborations.build(params[:collab])
     if @collab.save
-      redirect_to collaborations_path
+      params[:users_list].each do |u|
+        user_id = User.find_by_email(u).id
+        UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => user_id)
+      end
+      render :text => collaboration_path(@collab)
     else
       logger.info("FAILED VALIDATION")
       logger.info(@articles.errors)
