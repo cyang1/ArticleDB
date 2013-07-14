@@ -42,16 +42,16 @@
 </div>          
 
 <div class="dialog" id="login" style="display:none">
-	<form class="control-group">
-    <input type="text" placeholder="E-mail" class="flat">
-    <input type="password" placeholder="Password" class="flat">
+	<form class="control-group" action="/login" method="POST">
+    <input type="text" name="user[email]" placeholder="E-mail" class="flat">
+    <input type="password" name="user[password]" placeholder="Password" class="flat">
     <button class="btn btn-primary btn-wide">Login</button>
   </form>
   <div class="help-link"><a id="register-link" href="#register">Don't have an account? Register!</a></div>
 </div>
 
 <div class="dialog" id="register" style="display:none">
-	<form class="control-group" action="/users/new">
+	<form class="control-group" action="/users/new" method="POST">
     <input type="text" name="user[first_name]" placeholder="First Name" class="flat">
     <input type="text" name="user[last_name]" placeholder="Last Name" class="flat">
     <input type="text" name="user[email]" placeholder="E-mail" class="flat">
