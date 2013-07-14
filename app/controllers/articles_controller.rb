@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   def create
   	@article = Article.new(params[:article])
   	if @article.save!
-  		redirect_to articles_path(@article)
+  		redirect_to article_path(@article)
   	else
   		logger.info("FAILED VALIDATION")
   		logger.info(@articles.errors)

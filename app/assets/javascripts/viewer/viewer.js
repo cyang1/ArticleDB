@@ -68,7 +68,7 @@ function addMarks() {
       var start = $('*:contains("'+mark.highlight_start_line+'")').last();
       var end = $('*:contains("'+mark.highlight_end_line+'")').last();
       if (start.last().text() != "" && end.last().text() != "") {
-        addMark(start.last(), mark.highlight_start_offset, end.last(), mark.highlight_end_offset, "", mark.comment);
+        addMark(start.last(), mark.highlight_start_offset, end.last(), mark.highlight_end_offset, mark.user.first_name, mark.comment);
       }
     }
   }).error(function(error) {
@@ -79,8 +79,12 @@ function addMarks() {
     mouseenter: function(){
       $('#commentsContainer').show();
       $('.comment').html($(this).data("comment"));
+      $('.name').html($(this).data("name"));
+
     },
     mouseleave: function(){
+      $('.name').html("");
+
       $('.comment').html("");
       $('#commentsContainer').hide();
     }
@@ -103,7 +107,7 @@ function addMark(startDiv, startOffset, endDiv, endOffset, name, comment) {
     var firstUnhighlighted = text.substring(0, startOffset);
     var highlighted = text.substring(startOffset, endOffset);
     var lastUnhighlighted = text.substring(endOffset);
-    div.html(firstUnhighlighted+'<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+lastUnhighlighted);
+    div.html(firstUnhighlighted+'<span data-name="'+name+'" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+lastUnhighlighted);
   } else { // multi line
     for (var i in range) {
       var div = range[i];
@@ -111,14 +115,14 @@ function addMark(startDiv, startOffset, endDiv, endOffset, name, comment) {
         var text = div.text();
         var highlighted = text.substring(startOffset);
         var unhighlighted = text.substring(0, startOffset);
-        div.html(unhighlighted+'<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>');
+        div.html(unhighlighted+'<span data-name="'+name+'" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>');
       } else if (div == endDiv) {
         var text = div.text();
         var highlighted = text.substring(0, endOffset);
         var unhighlighted = text.substring(endOffset);
-        div.html('<span data-name="" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+unhighlighted);
+        div.html('<span data-name="'+name+'" data-comment="'+comment+'" class="highlight">'+highlighted+'</span>'+unhighlighted);
       } else {
-        div.html('<span data-name="" data-comment="'+comment+'" class="highlight">'+div.text()+'</span>');
+        div.html('<span data-name="'+name+'" data-comment="'+comment+'" class="highlight">'+div.text()+'</span>');
       }
     }
   }

@@ -29,7 +29,6 @@
 	        </form>
 	       	<ul class="nav pull-right">
 	          <li class="active"><a href="#fakelink">Collaborations</a></li>
-	          <%= current_user %>
             <% if logged_in? %>
 	          <li><a href="/collab">+<%= current_user.first_name %></a></li>
             <% else %>
