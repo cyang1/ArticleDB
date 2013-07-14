@@ -3,7 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).on 'click', '#login-link', (e) ->
-  $('#login').slideToggle() unless $('#register').is(':visible')
+  if $('#register').is(':visible')
+    $('#register').hide()
+  $('#login').slideToggle()
+
 
 $(document).on 'click', '#register-link', (e) ->
   $('#login').addClass('animated fadeOutRight')
