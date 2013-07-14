@@ -10,18 +10,19 @@
     </ul>
   </div>
   <% end %>
-  <%= f.text_field :name, :placeholder => 'Collaboration Name' %>
+  <%= f.text_field :name, :placeholder => 'Collaboration Name', :class => "span6" %>
   <div class="control-group form-inline">
-    <%= text_field_tag :users, nil, :placeholder => 'Add User', :id => 'user_typeahead', :'data-provide' => 'typeahead' %>
-    <button id="add_user_btn" class="btn">Add</button>
+    <%= text_field_tag :users, nil, :class => "span5", :placeholder => 'Add User', :id => 'user_typeahead', :'data-provide' => 'typeahead' %>
+    <button id="add_user_btn" class="btn btn-info">Add</button>
   </div>
   <ul id="users_list">
     <% @collab.users.each do |u| %>
     <li>
       <span class="mention_name"><%= "#{u.first_name} #{u.last_name}" %></span>
       <span class="mention_username"><%= u.email %></span>
+      <%= hidden_field_tag "user_ids[]", u.id %>
     </li>
     <% end %>
   </ul>
-  <%= f.submit nil, :class => 'btn' %>
+  <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
 <% end %>

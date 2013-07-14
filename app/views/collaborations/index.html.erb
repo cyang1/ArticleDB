@@ -1,16 +1,35 @@
+
 <div class="container">
-  <table>
+<div class="row">
+  <div class="span3">
+  </div>
+  <div class="span6">
+  <table class="table table-bordered">
     <thead>
-      <th>
-        <td>Name</td>
-      </th>
+        <td>Collaborations</td>
     </thead>
     <tbody>
       <% @collabs.each do |c| %>
       <tr>
-        <td><%= link_to c, c.name %></td>
+        <td><%= link_to c.name, c %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
+  </div>
+  <div class="span3">
+  </div>
+
+</div>
+<div class="row">
+  <div class="span3">
+  </div>
+  <div class="span6">
+  
+    <%= link_to "New Collaboration", new_collaboration_path, :class => "btn btn-primary" %>
+    </div>
+  <div class="span3">
+  </div>
+
+</div>
 </div>

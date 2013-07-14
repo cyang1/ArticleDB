@@ -4,8 +4,7 @@ ArticleDB::Application.routes.draw do
   match 'register' => 'users#new', :as => :register
   
   match 'login' => 'sessions#new', :as => :login
-  post '/users/create' => 'user#create'
-  get '/users/typeahead' => 'user#typeahead'
+  get '/users/typeahead' => 'users#typeahead'
 
   resources :users
   resources :sessions  

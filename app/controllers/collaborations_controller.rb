@@ -10,6 +10,7 @@ class CollaborationsController < ApplicationController
   end
 
   def create
+    logger.info(params[:collab])
     @collab = current_user.collaborations.build(params[:collab])
     if @collab.save
       redirect_to collaborations_path

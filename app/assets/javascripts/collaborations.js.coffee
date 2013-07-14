@@ -12,5 +12,6 @@ $(document).ready ->
         process(data.options)
   $('#add_user_btn').on 'click', (e) ->
     $('#users_list').append("<li>#{$('#user_typeahead').val()}</li>")
+    $('#users_list').append("<input id='users[]' name='users[]' type='hidden' value='#{$('#user_typeahead').val()}' />")
     e.preventDefault()
     return false;
