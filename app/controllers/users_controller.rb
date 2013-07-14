@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
   	if @user.save
       session[:user_id] = @user.id
-  		redirect_to new_article_path
+  		redirect_to collaborations_path
   	else
   		redirect_to "new"
   	end

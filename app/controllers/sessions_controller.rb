@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     if logged_in?
-      redirect_to current_user
+      redirect_to collaborations_index
     end
   end
 
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to new_article_path, :notice => "Logged in!"
+      redirect_to collaborations_index, :notice => "Logged in!"
     else
       redirect_to root_url, :alert => "Invalid email or password"
     end
