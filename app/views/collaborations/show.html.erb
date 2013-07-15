@@ -6,7 +6,7 @@
   <div class="span6">
   <table class="table table-bordered">
     <thead>
-        <td>Articles</td>
+        <td><%= @collab.name%> - Articles</td>
     </thead>
     <tbody>
       <% @articles.each do |c| %>
@@ -26,7 +26,7 @@
   </div>
   <div class="span6">
   
-    <%= link_to "Add Article", new_article_path, :class => "btn btn-primary" %>
+    <%= link_to "Add Article", new_article_path(:collaboration_id => @collab.id), :class => "btn btn-primary" %>
     </div>
   <div class="span3">
   </div>

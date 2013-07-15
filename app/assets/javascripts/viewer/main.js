@@ -14,6 +14,12 @@ function clearSelection() {
 
 $(document).ready(function() {
 
+//   function doStuff() {
+//    addMarks;
+// }
+// setInterval(doStuff, 1000);
+
+
   $('#addCommentContainer').hide();
 
   $('#showAddCommentContainer').click(function() {
@@ -40,7 +46,7 @@ $(document).ready(function() {
           type: "POST",
           dataType: "JSON"
         }).success(function(data){
-          addMark(start, startOffset, end, endOffset, "", $('textarea').val());
+          addMark(start, startOffset, end, endOffset, FIRST_NAME, $('textarea').val());
           $('textarea').val("");
           $('#addCommentContainer').hide();
         }).error(function(error) {

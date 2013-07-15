@@ -14,11 +14,14 @@ class CollaborationsController < ApplicationController
     @collab = Collaboration.new(params[:collaboration])
     if @collab.save
       UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => current_user.id)
-      params[:users_list].each do |u|
-        user_id = User.find_by_email(u).id
-        UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => user_id)
+      if params[:users_list] != nil
+        params[:users_list].each do |u|
+          user_id = User.find_by_email(u).id
+          UserCollaboration.create!(:collaboration_id => @collab.id, :user_id => user_id)
+        end
       end
       render :text => collaboration_path(@collab)
+  
     else
       logger.info("FAILED VALIDATION")
       logger.info(@articles.errors)
@@ -26,10 +29,10 @@ class CollaborationsController < ApplicationController
   end
 
   def show
-    collab = Collaboration.find(params[:id])
+    @collab = Collaboration.find(params[:id])
     respond_to do |format|
-      if collab.user_collaborations.exists?(:user_id => current_user.id)
-        @articles = collab.articles.order(:id)
+      if @collab.user_collaborations.exists?(:user_id => current_user.id)
+        @articles = @collab.articles.order(:id)
         format.html
         format.json { render :json => @articles }
       else

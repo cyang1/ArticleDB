@@ -93,6 +93,7 @@ function addMarks() {
 
 }
 
+
 function addMark(startDiv, startOffset, endDiv, endOffset, name, comment) {
   var iter = startDiv;
   var range = [];
@@ -1518,7 +1519,6 @@ var PDFView = {
   // on the views state. If the view is already rendered it will return false.
   renderView: function pdfViewRender(view, type) {
     var state = view.renderingState;
-    
     switch (state) {
       case RenderingStates.FINISHED:
         return false;

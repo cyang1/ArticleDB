@@ -10,10 +10,11 @@ $(document).ready ->
       $.get '/users/typeahead', { query : query }, (data) ->
         console.log(data.options)
         process(data.options)
-  $('#add_user_btn').on 'click', (e) ->
-    $('#users_list').append("<li>#{$('#user_typeahead').val()}</li>")
-    e.preventDefault()
-    return false;
+  $(document).on 'keydown', '#user_typeahead', (e) ->
+    if (e.keyCode == 13) 
+      $('#users_list').append("<li>#{$('#user_typeahead').val()}</li>")
+      e.preventDefault()
+      return false;
   $('#collaboration_form').on 'submit', (e) ->
     serializedStr = ''
     $('#users_list li').each (l) ->

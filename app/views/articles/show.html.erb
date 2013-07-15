@@ -55,6 +55,7 @@
   	PDFJS.workerSrc = "<%= asset_path("viewer/worker_loader") %>.js";
   	DEFAULT_URL = "<%= @article.pdf.url %>";
     ARTICLE_ID = <%= @article.id %>;
+    FIRST_NAME = "<%= current_user.first_name %>";
   </script>
   <%= javascript_include_tag "viewer/ui_utils"%>
   <%= javascript_include_tag "viewer/text_layer_builder"%>

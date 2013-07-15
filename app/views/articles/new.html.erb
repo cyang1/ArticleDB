@@ -13,6 +13,7 @@
 <div class="control-group">
   <%= f.file_field :pdf, :title => "Browse for PDF" %>
 </div>
+<%= f.hidden_field :collaboration_id, :value => params[:collaboration_id] %>
 <%= f.submit "Submit", :class => "btn btn-primary btn-block" %>
 <% end %>
 </div>
